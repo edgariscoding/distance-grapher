@@ -1,5 +1,8 @@
-start:	SanE_10_P2_Graph.cpp
-	g++ -o SanE_10_P2_Graph SanE_10_P2_Graph.cpp -I.
+start:	src/SanE_10_P2_Graph.cpp
+	g++ -o build/SanE_10_P2_Graph src/SanE_10_P2_Graph.cpp -I.
 
-run: SanE_10_P2_Graph
-	./SanE_10_P2_Graph
+run: build/SanE_10_P2_Graph
+	./build/SanE_10_P2_Graph
+	
+clean: 
+	rm -f build/*
