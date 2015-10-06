@@ -1,4 +1,5 @@
 #include <iostream>
+#include "add.h"
 using namespace std;
 
 #define MAXNODES 26
@@ -7,6 +8,8 @@ int main ()
 {
 	cout << "\nThis is P2: Graph\n\n";
 	
+	cout << "The sum of 2 and 3 is: " << add(2,3) << endl;
+	/*
 	while(play)
 	{
 		std::string Line; // string to read line in
@@ -21,5 +24,6 @@ int main ()
 		}
 		std::vector<std::string> Parsed; // vector to store parsed words
 		LineParser(Line, Parsed, false); // function to parse words into vector
+	*/
 	return 0;
 }
