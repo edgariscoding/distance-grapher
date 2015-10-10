@@ -4,12 +4,13 @@
 // Program: Program 2 - Basic Undirected Graph
 //------------------------------------------------------
 
+
 #include "parser.h"
 
 bool CSV = false;
 
 // parseLine credit: Yosvany Blanco
-void parseLine(std::string Line, std::vector<std::string> &Holder) 
+void parseLine(std::string Line, std::vector<std::string> &Holder)
 {
 	// Parses terminal input or CSV input
 	std::replace(Line.begin(), Line.end(), ' ', ',');
@@ -35,20 +36,6 @@ void parseLine(std::string Line, std::vector<std::string> &Holder)
 	}
 }
 
-void parseCSV(std::string source, std::vector<std::string> &Holder)
-{
-	std::replace(source.begin(), source.end(), '\r', ',');
-	std::stringstream ss;
-	ss.str(source);
-	std::string temp;
-
-	while(std::getline(ss, temp ,','))
-	{
-		Holder.push_back(temp); // pushes back each word
-
-	}
-}
-
 bool isCSV()
 {
 	return CSV;
@@ -57,7 +44,33 @@ bool isCSV()
 
 /*
  *
- * if (file.is_open())
+ * void parseCSV(string csvStream)
+{
+	//std::replace(CSV.begin(), CSV.end(), '\r');
+	std::stringstream ss;
+	ss.str(csvStream);
+	std::string temp;
+
+	while(std::getline(ss, temp ,'\r'))
+	{
+		while(std::getline(ss, temp ,','))
+		{
+			if (temp.empty()) 
+			{
+				continue;
+			}
+			else 
+			{
+				//Holder.push_back(temp); // pushes back each word
+			}
+		}
+
+	}
+}
+
+
+
+if (file.is_open())
             {
                 cout << "\nReading from CSV file...\n\n";
                 file >> tempFile;

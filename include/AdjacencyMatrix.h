@@ -3,13 +3,16 @@
 // Class: CSCE 2110 Fall 2015
 // Program: Program 2 - Basic Undirected Graph
 //------------------------------------------------------
+#ifndef ADJACENCYMATRIX_H
+#define ADJACENCYMATRIX_H
+
 #include <string>
 #include <iostream>
 #include "edgrlib.h"
+#include "parser.h"
+#include <vector>
 using namespace std;
 
-#ifndef ADJACENCYMATRIX_H
-#define ADJACENCYMATRIX_H
 #define MAXNODES 26
 
 class AdjacencyMatrix
@@ -21,6 +24,7 @@ class AdjacencyMatrix
 	
 	public:
 		AdjacencyMatrix(int);
+		void Generate(vector<string>);
 		void AddNode(int);
 		void DeleteNode(int);
 		void SearchNode(int);

@@ -3,19 +3,23 @@
 // Class: CSCE 2110 Fall 2015
 // Program: Program 2 - Basic Undirected Graph
 //------------------------------------------------------
+#ifndef PARSER_H
+#define PARSER_H
+
 #include <string>
 #include <sstream>
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <fstream>
+#include "AdjacencyMatrix.h"
 
-#ifndef PARSELINE_H
-#define PARSELINE_H
+using namespace std;
 
 // parseLine credit: Yosvany Blanco
-// pass in a reference to an empty string vector that will be used to parse passed in Line
-//bool CSV true for CSV parse mode // CSV will be set to false by default
-void parseLine(const std::string Line, std::vector<std::string> &Holder);
+void parseLine(const string Line, vector<string> &Holder);
+
+//void parseCSV(string x);
 
 bool isCSV();
 

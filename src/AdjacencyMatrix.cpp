@@ -20,16 +20,80 @@ AdjacencyMatrix::AdjacencyMatrix(int n)
 	}
 }
 
-void AdjacencyMatrix::AddNode(int i)
+void AdjacencyMatrix::Generate(vector<string> parsedInput)
 {
-	if (letters[i])
+	if (parsedInput[0] == "node")
 	{
-		cout << "*** ERROR *** DUPLICATE NODE: " << (static_cast<char> (i + 65)) << "\n";
+		if (parsedInput[1] == "add")
+		{
+			AddNode(static_cast<int>((char) toupper(parsedInput[2][0])) - 65);
+
+		}
+		else if (parsedInput[1] == "delete")
+		{
+			int oldNode = (static_cast<int>((char) toupper(parsedInput[2][0])) - 65);
+			DeleteNode(oldNode);
+		}
+		else if (parsedInput[1] == "search")
+		{
+			int searchNode = (static_cast<int>((char) toupper(parsedInput[2][0])) - 65);
+			SearchNode(searchNode);
+		}
+		else
+		{
+			userError();
+		}
+	}
+	else if (parsedInput[0] == "edge")
+	{
+		if (parsedInput[1] == "add")
+		{
+			int firstAddEdge = (static_cast<int>((char) toupper(parsedInput[2][0])) - 65);
+			int secondAddEdge = (static_cast<int>((char) toupper(parsedInput[3][0])) - 65);
+			AddEdge(firstAddEdge, secondAddEdge);
+		}
+		else if (parsedInput[1] == "delete")
+		{
+			int firstDelEdge = (static_cast<int>((char) toupper(parsedInput[2][0])) - 65);
+			int secondDelEdge = (static_cast<int>((char) toupper(parsedInput[3][0])) - 65);
+			DeleteEdge(firstDelEdge, secondDelEdge);
+		}
+		else
+		{
+			userError();
+		}
+	}
+	else if (parsedInput[0] == "print")
+	{
+		if (parsedInput[1] == "matrix")
+		{
+			PrintMatrix();
+		}
+		else if (parsedInput[1] == "list")
+		{
+			PrintList();
+		}
+		else
+		{
+			userError();
+		}
 	}
 	else
 	{
-		letters[i] = true;
-		cout << "ADDED: NODE " << (static_cast<char> (i + 65)) << "\n";
+		userError();
+	}
+}
+
+void AdjacencyMatrix::AddNode(int nodeName)
+{
+	if (letters[nodeName])
+	{
+		cout << "*** ERROR *** DUPLICATE NODE: " << (static_cast<char> (nodeName + 65)) << "\n";
+	}
+	else
+	{
+		letters[nodeName] = true;
+		cout << "ADDED: NODE " << (static_cast<char> (nodeName + 65)) << "\n";
 	}
 }
 
@@ -49,7 +113,11 @@ void AdjacencyMatrix::DeleteNode(int nodeName)
 				adj[nodeName][i] = '0';
 				adj[i][nodeName] = '0';
 				cout << "EDGE AUTO REMOVED BY NODE DELETION: " << (static_cast<char> (nodeName + 65)) << "-" <<  (static_cast<char> (i + 65)) << "\n";
-				cout << "EDGE AUTO REMOVED BY NODE DELETION: " << (static_cast<char> (i + 65)) << "-" <<  (static_cast<char> (nodeName + 65)) << "\n";
+				if(nodeName != i)
+				{
+					cout << "EDGE AUTO REMOVED BY NODE DELETION: " << (static_cast<char> (i + 65)) << "-" <<  (static_cast<char> (nodeName + 65)) << "\n";
+
+				}
 
 			}
 		}
@@ -85,7 +153,13 @@ void AdjacencyMatrix::AddEdge(int firstEdge, int secondEdge)
 	}
 	else if((adj[firstEdge][secondEdge] == '1') || (adj[secondEdge][firstEdge] == '1'))
 	{
-		cout << "*** ERROR *** EDGE NOT DELETED * DUPLICATE: " << (static_cast<char> (firstEdge + 65)) << "-" << (static_cast<char> (secondEdge + 65)) << "\n";
+		cout << "*** ERROR *** DUPLICATE EDGE: " << (static_cast<char> (firstEdge + 65)) << "-" << (static_cast<char> (secondEdge + 65)) << "\n";
+	}
+	else if(firstEdge == secondEdge)
+	{
+		adj[firstEdge][secondEdge] = '1';
+		letters[firstEdge] = true;
+		cout << "ADDED: EDGE " << (static_cast<char> (firstEdge + 65)) << "-" << (static_cast<char> (secondEdge + 65)) << "\n";
 	}
 	else
 	{
@@ -115,8 +189,8 @@ void AdjacencyMatrix::DeleteEdge(int firstEdge, int secondEdge)
 		adj[secondEdge][firstEdge] = '0';
 		letters[firstEdge] = false;
 		letters[secondEdge] = false;
-		cout << "DELETED: EDGE" << (static_cast<char> (firstEdge + 65)) << "-" <<  (static_cast<char> (secondEdge + 65)) << "\n";
-		cout << "DELETED: EDGE" << (static_cast<char> (secondEdge + 65)) << "-" <<  (static_cast<char> (firstEdge + 65)) << "\n";
+		cout << "DELETED: EDGE " << (static_cast<char> (firstEdge + 65)) << "-" <<  (static_cast<char> (secondEdge + 65)) << "\n";
+		cout << "DELETED: EDGE " << (static_cast<char> (secondEdge + 65)) << "-" <<  (static_cast<char> (firstEdge + 65)) << "\n";
 	}
 }
 

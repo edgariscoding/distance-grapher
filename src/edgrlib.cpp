@@ -8,7 +8,7 @@
 
 void userError()
 {
-    std::cerr << "\n**ERROR** ENTER PROPER COMMAND\n";
+    cout << "\n**ERROR** UNKNOWN COMMAND\n";
     cout << "Available commands: \n";
     cout << "\tnode add A\n";
     cout << "\tnode delete A\n";
