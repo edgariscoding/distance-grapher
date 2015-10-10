@@ -4,7 +4,6 @@ project(Program_2__CLion_)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-        build/SanE_10_P2_Graph
         "docs/Program 2 Specs.pdf"
         include/AdjacencyMatrix.h
         include/parser.h
