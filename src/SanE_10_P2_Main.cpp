@@ -43,7 +43,6 @@ int main () {
 		}
 		else
 		{
-			cout << "EMPTY\n";
 			userError();
 		}
 	}while(true);
