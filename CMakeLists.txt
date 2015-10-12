@@ -5,18 +5,16 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
         "docs/Program 2 Specs.pdf"
-        include/AdjacencyMatrix.h
-        include/parser.h
-        include/edgrlib.h
-        src/AdjacencyMatrix.cpp
-        src/parser.cpp
-        src/SanE_10_P2_Graph.cpp
-        src/file.csv
-        src/edgrlib.cpp
-        test/testfile.csv
-        file.csv
+        include/SanE_10_P2_AdjacencyMatrix.h
+        include/SanE_10_P2_parser.h
+        include/SanE_10_P2_edgrlib.h
+        src/SanE_10_P2_AdjacencyMatrix.cpp
+        src/SanE_10_P2_parser.cpp
+        src/SanE_10_P2_Main.cpp
+        src/SanE_10_P2_edgrlib.cpp
+        test/file.csv
         Makefile
-        README.md src/edgrlib.cpp include/edgrlib.h)
+        README.md src/SanE_10_P2_edgrlib.cpp include/SanE_10_P2_edgrlib.h)
 
 include_directories(include)
 

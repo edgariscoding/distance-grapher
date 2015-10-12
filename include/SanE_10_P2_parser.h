@@ -12,7 +12,7 @@
 #include <iostream>
 #include <algorithm>
 #include <fstream>
-#include "AdjacencyMatrix.h"
+#include "SanE_10_P2_AdjacencyMatrix.h"
 
 using namespace std;
 

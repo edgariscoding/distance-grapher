@@ -8,8 +8,8 @@
 
 #include <string>
 #include <iostream>
-#include "edgrlib.h"
-#include "parser.h"
+#include "SanE_10_P2_edgrlib.h"
+#include "SanE_10_P2_parser.h"
 #include <vector>
 using namespace std;
 

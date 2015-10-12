@@ -4,7 +4,7 @@
 // Program: Program 2 - Basic Undirected Graph
 //------------------------------------------------------
 
-#include "AdjacencyMatrix.h"
+#include "SanE_10_P2_AdjacencyMatrix.h"
 
 AdjacencyMatrix::AdjacencyMatrix(int n)
 {

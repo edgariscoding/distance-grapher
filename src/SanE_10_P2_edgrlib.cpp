@@ -4,7 +4,7 @@
 // Program: Program 2 - Basic Undirected Graph
 //------------------------------------------------------
 
-#include "edgrlib.h"
+#include "SanE_10_P2_edgrlib.h"
 
 void userError()
 {
