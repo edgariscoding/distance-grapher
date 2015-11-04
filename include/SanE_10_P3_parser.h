@@ -1,7 +1,7 @@
 //------------------------------------------------------
 // Name: Edgar Sanchez
 // Class: CSCE 2110 Fall 2015
-// Program: Program 2 - Basic Undirected Graph
+// Program: Incremental Graph Project
 //------------------------------------------------------
 #ifndef PARSER_H
 #define PARSER_H
@@ -12,14 +12,11 @@
 #include <iostream>
 #include <algorithm>
 #include <fstream>
-#include "SanE_10_P2_AdjacencyMatrix.h"
 
-using namespace std;
+extern bool CSV;
 
 // parseLine credit: Yosvany Blanco
-void parseLine(const string Line, vector<string> &Holder);
-
-//void parseCSV(string x);
+void parseLine(const std::string Line, std::vector<std::string> &Holder);
 
 bool isCSV();
 
