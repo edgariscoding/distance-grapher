@@ -120,6 +120,8 @@ void AdjacencyMatrix::AddEdge(int firstEdge, int secondEdge, string name, int di
 		cout << "*** ERROR *** NODE N" << (static_cast<char> (secondEdge + 65)) << ": NOT FOUND\n";
 	}
 	else if(( adj[firstEdge][secondEdge] != empty ) || ( adj[secondEdge][firstEdge] != empty )) {
+		node[firstEdge][secondEdge].exists = true;
+		node[secondEdge][firstEdge].exists = true;
 		node[firstEdge][secondEdge].name = name;
 		node[secondEdge][firstEdge].name = name;
 		node[firstEdge][secondEdge].distance = distance;
@@ -129,6 +131,8 @@ void AdjacencyMatrix::AddEdge(int firstEdge, int secondEdge, string name, int di
 	else {
 		adj[firstEdge][secondEdge] = distance;
 		adj[secondEdge][firstEdge] = distance;
+		node[firstEdge][secondEdge].exists = true;
+		node[secondEdge][firstEdge].exists = true;
 		node[firstEdge][secondEdge].name = name;
 		node[secondEdge][firstEdge].name = name;
 		node[firstEdge][secondEdge].distance = distance;
@@ -148,7 +152,7 @@ void AdjacencyMatrix::DeleteEdge(int firstEdge, int secondEdge) {
 	else {
 		adj[firstEdge][secondEdge] = empty;
 		node[firstEdge][secondEdge].exists = false;
-		UNDIRECTED = !node[secondEdge][firstEdge].exists;
+		UNDIRECTED = node[secondEdge][firstEdge].exists;
 		cout << "DELETED: EDGE N" << (static_cast<char> (firstEdge + 65)) << " N" <<  (static_cast<char> (secondEdge + 65)) << "\n";
 	}
 }
@@ -190,6 +194,16 @@ void AdjacencyMatrix::Kruskal() {
 	if (!UNDIRECTED) {
 		cout << "ERROR: Kruskal's Algorithm available only for UNDIRECTED graphs\n";
 	}
-	cout << "\nYou called kruskal... MUST BE IMPLEMENTED ASAP!\n\n";
+	else{
+		for (int i = 0; i < MAXNODES; ++i){
+			if (node[i][i].exists) {
+				for (int j = (i + 1); j < (MAXNODES - 1); ++j){
+					if (node[i][j].exists) {
+						cout << node[i][j].distance << "\n";
+					}
+				}
+			}
+		}
+	}
 	return;
 }
