@@ -22,6 +22,7 @@ class AdjacencyMatrix
 		int empty = -1;
 		int n;
 		int **adj;
+		int totalEdges;
 		struct {
 			bool exists = false;
 			string name;
