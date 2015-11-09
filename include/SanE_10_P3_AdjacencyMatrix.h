@@ -9,9 +9,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "SanE_10_P3_edgrlib.h"
-using std::cout;
-using std::string;
+#include "SanE_10_P3_helpers.h"
 
 #define MAXNODES 26
 
@@ -19,23 +17,23 @@ class AdjacencyMatrix
 {
 	private:
 		bool UNDIRECTED = true;
-		int empty = -1;
+		static const int empty;
 		int n;
 		int **adj;
 		int totalEdges;
 		struct {
 			bool exists = false;
-			string name;
-			int distance;
+			std::string name = "";
+			int distance = empty;
 		} node[MAXNODES][MAXNODES];
 	
 	public:
 		AdjacencyMatrix(int);
-		void Generate(std::vector<string>);
+		void Generate(std::vector<std::string>);
 		void AddNode(int);
 		void DeleteNode(int);
 		void SearchNode(int);
-		void AddEdge(int, int, string, int);
+		void AddEdge(int, int, std::string, int);
 		void DeleteEdge(int, int);
 		void PrintMatrix();
 		void PrintList();

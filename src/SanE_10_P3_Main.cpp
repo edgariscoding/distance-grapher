@@ -6,34 +6,34 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "SanE_10_P3_parser.h"
+#include "SanE_10_P3_helpers.h"
 #include "SanE_10_P3_AdjacencyMatrix.h"
 
 int main () {
 	AdjacencyMatrix matrix(MAXNODES);
 	do {
-		cout << "cmd> ";
-		string userInput;
+		std::cout << "cmd> ";
+		std::string userInput;
 		getline(std::cin, userInput);
 
 		if (userInput == "quit") {
-			cout << "\nProgram terminated!\n";
+			std::cout << "\nProgram terminated!\n";
 			return 0;
 		}
 		else if ((!userInput.empty()) && (userInput[0] != ' ')) {
-			std::vector<string> parsedInput;
+			std::vector<std::string> parsedInput;
 			parseLine(userInput, parsedInput);
-			if (isCSV()) {
-				std::ifstream file(parsedInput[1].c_str());
-				std::vector<string> parsedLine;
-				string csvStream;
-				while(std::getline(file, csvStream)) {
+			if (isFile()) {
+				std::ifstream fileLocation(parsedInput[1].c_str());
+				std::vector<std::string> parsedLine;
+				std::string csvStream;
+				while(std::getline(fileLocation, csvStream)) {
 					parseLine(csvStream.c_str(), parsedLine);
 					matrix.Generate(parsedLine);
 					parsedLine.clear();
 				}
-				file.close();
-				CSV = false;
+				fileLocation.close();
+				file = false;
 				continue;
 			}
 			matrix.Generate(parsedInput);
