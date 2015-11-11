@@ -1,36 +1,42 @@
 //------------------------------------------------------
 // Name: Edgar Sanchez
 // Class: CSCE 2110 Fall 2015
-// Program: Program 2 - Basic Undirected Graph
+// Program: Incremental Graph Project
 //------------------------------------------------------
 #ifndef ADJACENCYMATRIX_H
 #define ADJACENCYMATRIX_H
 
 #include <string>
 #include <iostream>
-#include "SanE_10_P2_edgrlib.h"
-#include "SanE_10_P2_parser.h"
 #include <vector>
-using namespace std;
+#include "SanE_10_P3_helpers.h"
 
 #define MAXNODES 26
 
 class AdjacencyMatrix
 {
 	private:
+		bool UNDIRECTED = true;
+		static const int empty;
 		int n;
-		char **adj;
-		bool letters[MAXNODES] = {false};
+		int **adj;
+		int totalEdges;
+		struct {
+			bool exists = false;
+			std::string name = "";
+			int distance = empty;
+		} node[MAXNODES][MAXNODES];
 	
 	public:
 		AdjacencyMatrix(int);
-		void Generate(vector<string>);
+		void Generate(std::vector<std::string>);
 		void AddNode(int);
 		void DeleteNode(int);
 		void SearchNode(int);
-		void AddEdge(int, int);
+		void AddEdge(int, int, std::string, int);
 		void DeleteEdge(int, int);
 		void PrintMatrix();
 		void PrintList();
+		void Kruskal();
 };
 #endif
