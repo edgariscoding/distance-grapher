@@ -8,7 +8,6 @@
 
 #include <string>
 #include <iostream>
-#include <vector>
 #include "SanE_10_P3_helpers.h"
 
 #define MAXNODES 26
@@ -16,10 +15,8 @@
 class AdjacencyMatrix
 {
 	private:
-		bool UNDIRECTED = true;
-		static const int empty;
-		int n;
-		int **adj;
+		bool UNDIRECTED;
+		static const int empty = -1;
 		int totalEdges;
 		struct {
 			bool exists = false;
@@ -28,7 +25,7 @@ class AdjacencyMatrix
 		} node[MAXNODES][MAXNODES];
 	
 	public:
-		AdjacencyMatrix(int);
+		AdjacencyMatrix();
 		void Generate(std::vector<std::string>);
 		void AddNode(int);
 		void DeleteNode(int);

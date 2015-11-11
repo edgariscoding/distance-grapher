@@ -6,11 +6,10 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "SanE_10_P3_helpers.h"
 #include "SanE_10_P3_AdjacencyMatrix.h"
 
 int main () {
-	AdjacencyMatrix matrix(MAXNODES);
+	AdjacencyMatrix matrix;
 	do {
 		std::cout << "cmd> ";
 		std::string userInput;
@@ -20,6 +19,10 @@ int main () {
 			std::cout << "\nProgram terminated!\n";
 			return 0;
 		}
+		// Parses input string to determine the type of command.
+		// If it is a valid AdjacencyMatrix command, it is executed.
+		// If it is a valid CSV file, then the CSV file is parsed and each line is executed as a command.
+		// Error will be returned if syntax is incorrect.
 		else if ((!userInput.empty()) && (userInput[0] != ' ')) {
 			std::vector<std::string> parsedInput;
 			parseLine(userInput, parsedInput);

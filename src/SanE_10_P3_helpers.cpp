@@ -8,9 +8,9 @@
 bool file = false;
 
 // CREDIT: parseLine function based on original version by: Yosvany Blanco
-// Parses a string of text entered from the terminal. If the first word found
-// is "file", a flag is set to allow the file to be opened. The contents of the
-// CSV file are then parsed through this function as well.
+// Parses a string of text entered from the terminal and stores each word into a vector.
+// If the first word found is "file", a flag is set to allow the file to be opened.
+// The contents of the CSV file are then parsed through this function as well.
 void parseLine(std::string Line, std::vector<std::string> &Holder) {
 	std::replace(Line.begin(), Line.end(), ' ', ',');
 	std::stringstream ss;
@@ -29,6 +29,7 @@ void parseLine(std::string Line, std::vector<std::string> &Holder) {
 	}
 }
 
+// If current line is a file command, then return true.
 bool isFile() {
 	return file;
 }

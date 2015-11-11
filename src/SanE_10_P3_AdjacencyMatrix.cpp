@@ -4,21 +4,13 @@
 // Program: Incremental Graph Project
 //------------------------------------------------------
 #include <SanE_10_P3_AdjacencyMatrix.h>
-#include "SanE_10_P3_AdjacencyMatrix.h"
 
-const int AdjacencyMatrix::empty = -1;
 
-AdjacencyMatrix::AdjacencyMatrix(int n) {
-	this->n = n;
-	adj = new int* [n];
-	for (int i = 0; i < n; i++)	{
-		adj[i] = new int [n];
-		for(int j = 0; j < n; j++) {
-			adj[i][j]= empty;
-		}
-	}
+AdjacencyMatrix::AdjacencyMatrix() {
+	UNDIRECTED = true;
 }
 
+// Generates Adjacency Matrix using parsed input to call necessary functions.
 void AdjacencyMatrix::Generate(std::vector<std::string> parsedInput) {
 	if (parsedInput[0] == "node") {
 		if (parsedInput[1] == "add" && toupper(parsedInput[2][0]) == 'N') {
@@ -71,6 +63,7 @@ void AdjacencyMatrix::Generate(std::vector<std::string> parsedInput) {
 	}
 }
 
+// Adds new Adjacency Matrix node. Sets node's exists flag to true, assigns name, and disregards distance.
 void AdjacencyMatrix::AddNode(int nodeName) {
 	if (node[nodeName][nodeName].exists) {
 		std::cout << "*** ERROR *** DUPLICATE NODE: N" << (static_cast<char> (nodeName + 65)) << "\n";
@@ -83,6 +76,7 @@ void AdjacencyMatrix::AddNode(int nodeName) {
 	}
 }
 
+// Deletes existing Adjacency Matrix and removes associated edges automatically.
 void AdjacencyMatrix::DeleteNode(int nodeName) {
 	if (!node[nodeName][nodeName].exists) {
 		std::cout << "*** ERROR *** NODE NOT FOUND FOR DELETION: N" << (static_cast<char> (nodeName + 65)) << "\n";
@@ -109,6 +103,7 @@ void AdjacencyMatrix::DeleteNode(int nodeName) {
 	}
 }
 
+// Searches Adjacency Matrix for the specified node by checking its exist flag.
 void AdjacencyMatrix::SearchNode(int nodeName) {
 	if (node[nodeName][nodeName].exists)	{
 		std::cout << "NODE N" << (static_cast<char> (nodeName + 65)) << ": FOUND\n";
@@ -118,8 +113,9 @@ void AdjacencyMatrix::SearchNode(int nodeName) {
 	}
 }
 
+// Adds (or updates) a bidirectional edge to the Adjacency Matrix.
 void AdjacencyMatrix::AddEdge(int firstEdge, int secondEdge, std::string name, int distance) {
-	if( firstEdge > n || secondEdge > n || firstEdge < 0 || secondEdge < 0 || firstEdge == secondEdge ) {
+	if( firstEdge > MAXNODES || secondEdge > MAXNODES || firstEdge < 0 || secondEdge < 0 || firstEdge == secondEdge ) {
 		userError();
 	}
 	else if (!node[firstEdge][firstEdge].exists) {
@@ -150,25 +146,27 @@ void AdjacencyMatrix::AddEdge(int firstEdge, int secondEdge, std::string name, i
 	}
 }
 
-void AdjacencyMatrix::DeleteEdge(int firstEdge, int secondEdge) {
-	if(firstEdge > n || secondEdge > n || firstEdge < 0 || secondEdge < 0) {
+// Deletes an existing unidirectional edge on the Adjacency Matrix. Sets UNDIRECTED flag if single edge is deleted.
+void AdjacencyMatrix::DeleteEdge(int firstNode, int secondNode) {
+	if(firstNode > MAXNODES || secondNode > MAXNODES || firstNode < 0 || secondNode < 0) {
 		userError();
 	}
-	else if(!node[firstEdge][secondEdge].exists) {
-		std::cout << "*** ERROR *** EDGE DOES NOT EXIST FOR DELETION: N" << (static_cast<char> (firstEdge + 65)) << " N" << (static_cast<char> (secondEdge + 65)) << "\n";
+	else if(!node[firstNode][secondNode].exists) {
+		std::cout << "*** ERROR *** EDGE DOES NOT EXIST FOR DELETION: N" << (static_cast<char> (firstNode + 65)) << " N" << (static_cast<char> (secondNode + 65)) << "\n";
 	}
 	else {
-		node[firstEdge][secondEdge].exists = false;
-		node[firstEdge][secondEdge].name = "";
-		node[firstEdge][secondEdge].distance = empty;
-		UNDIRECTED = !node[secondEdge][firstEdge].exists;
+		node[firstNode][secondNode].exists = false;
+		node[firstNode][secondNode].name = "";
+		node[firstNode][secondNode].distance = empty;
+		UNDIRECTED = !node[secondNode][firstNode].exists;
 		--totalEdges;
-		std::cout << "DELETED: EDGE N" << (static_cast<char> (firstEdge + 65)) << " N" <<  (static_cast<char> (secondEdge + 65)) << "\n";
+		std::cout << "DELETED: EDGE N" << (static_cast<char> (firstNode + 65)) << " N" <<  (static_cast<char> (secondNode + 65)) << "\n";
 	}
 }
 
+// Prints active fields on the Adjacency Matrix.
 void AdjacencyMatrix::PrintMatrix() {
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < MAXNODES; ++i) {
 		if (i == 0){
 			std::cout << "   ";
 		}
@@ -177,10 +175,10 @@ void AdjacencyMatrix::PrintMatrix() {
 		}
 	}
 	std::cout << "\n";
-	for(int i = 0; i < n; i++) {
+	for(int i = 0; i < MAXNODES; i++) {
 		if (node[i][i].exists) {
 			std::cout << " N" << (char) (i + 65) << " ";
-			for (int j = 0; j < n; j++) {
+			for (int j = 0; j < MAXNODES; j++) {
 				if (node[j][j].exists) {
 					std::cout << node[i][j].distance << "  ";
 				}
@@ -190,6 +188,7 @@ void AdjacencyMatrix::PrintMatrix() {
 	}
 }
 
+// Prints active fields on an Adjacency List generated from the Adjacency Matrix.
 void AdjacencyMatrix::PrintList() {
 	for (int i = 0; i < MAXNODES; ++i) {
 		if (node[i][i].exists) {
@@ -204,26 +203,18 @@ void AdjacencyMatrix::PrintList() {
 	}
 }
 
+
+// Applies Kruskal's Algorithm to a copy of the current Adjacency Matrix then prints an minimum spanning tree Adjacency List.
 void AdjacencyMatrix::Kruskal() {
 	if (!UNDIRECTED) {
 		std::cout << "ERROR: Kruskal's Algorithm available only for UNDIRECTED graphs\n";
 	}
 	else{
-		// TODO: Implement Kruskal's Algorithm
-		// TESTING
-		int edges[totalEdges][2];
 
-		for (int i = 0; i < MAXNODES; ++i){
-			if (node[i][i].exists) {
-				for (int j = (i + 1); j < (MAXNODES - 1); ++j){
-					if (node[i][j].exists) {
-						std::cout << node[i][j].distance << "\n";
-						//edges[i][j] = 1; causes seg fault
-					}
-				}
-			}
-		}
-		std::cout << "Total Edges: " << totalEdges << "\n";
+		// TODO: Implement Kruskal's Algorithm
+		std::cout << "TODO: Implement Kruskal's Algorithm\n";
+
 	}
 	return;
+
 }
