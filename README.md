@@ -31,6 +31,12 @@ make
 make run
 ```
 
+##### Use Program Test CSV File:
+
+```
+file test/prog3test.csv
+```
+
 ## 1. Add a node to the graph.
 The user provides a NAME for a node. 
 
