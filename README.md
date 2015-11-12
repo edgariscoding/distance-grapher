@@ -3,13 +3,13 @@
 ###### By Edgar Sanchez
 ____
 
-Program 3 for will serve as an incremental implementation of a Road Atlas and Driving Distance Calculator. Specifically, Program 3 adds labels and weights to the basic graph provided in Program 2. In addition, it adds the capability to make the graph DIRECTIONAL by REMOVING specific edges (one way). Finally, Program 3 implements Krushkal's (Minimum Spanning Tree) algorithm.
+Program 3 for will serve as an incremental implementation of a Road Atlas and Driving Distance Calculator. Specifically, Program 3 adds labels and weights to the basic graph provided in Program 2. In addition, it adds the capability to make the graph DIRECTIONAL by REMOVING specific edges (one way). Finally, Program 3 implements Kruskal's (Minimum Spanning Tree) algorithm.
 
 User input will be in the form of commands. The user must be able to input commands via the command line OR from a file in a CSV format. **BOTH input methods must be available to the user**. This format will allow the easy creation of a large number of inputs quickly without the need for a long series of prompts and responses. The commands used in the CSV file are identical to the command line commands EXCEPT, of course, each field of the command in a CSV file is separated by a comma. Also, neither the command "file" nor the command "Quit" will be issued from a CSV file. These are NOT "error conditions" that must be handled ... it is just a promise from the instructor. Once all commands in a given command file have been processed, the program returns to the interactive mode with a command prompt.
 
 Program 3 must build an Undirected or Directed Graph from user input. Nodes are created first. For the sake of simplicity, all nodes are assumed to be "cities" with the names NA through NZ (26 possible cities). Edges are then created between existing nodes, along with an EDGE NAME and a DISTANCE between the nodes. In accordance with the instructions of Program 2, adding an edge implies that the edge is initially 2-way. Program 3 then provides a command to DELETE specific instances of the edges, possibly making them ONE WAY. Deleting both directions (with two DELETE commands) DELETES an edge, completely. Your program can handle the graph either as an ADJACENCY MATRIX or as an ADJACENCY LIST. The only restriction is that your entire Team must use the same method, since the final program in the class will be submitted as a group project (one submission per team).
 
-Program 3 also adds the command "Krushkal" to produce the minimal spanning tree. Since Krushkal’s Algorithm only works on UNDIRECTED graphs, you have to implement a GLOBAL VARIABLE called “UNDIRECTED” which will initially be set to TRUE. As long as this variable is TRUE, Krushkal’s algorithm should work. When the user deletes even ONE edge (making the graph DIRECTIONAL), the UNDIRECTED must be set to FALSE. The first thing your Krushkal’s function should do is check the value of UNDIRECTED. If it is FALSE, simply print an ERROR message to the user stating that KRUSHKAL’s ALGORITM IS NOT AVAILABLE FOR DIRECTED GRAPHS.
+Program 3 also adds the command "Kruskal" to produce the minimal spanning tree. Since Kruskal’s Algorithm only works on UNDIRECTED graphs, you have to implement a GLOBAL VARIABLE called “UNDIRECTED” which will initially be set to TRUE. As long as this variable is TRUE, Kruskal’s algorithm should work. When the user deletes even ONE edge (making the graph DIRECTIONAL), the UNDIRECTED must be set to FALSE. The first thing your Kruskal’s function should do is check the value of UNDIRECTED. If it is FALSE, simply print an ERROR message to the user stating that Kruskal’s ALGORITM IS NOT AVAILABLE FOR DIRECTED GRAPHS.
 
 When the program is executed, it begins with a command prompt: **cmd>**. Your Program must implement the following commands:
 
@@ -167,7 +167,7 @@ If EITHER node does not exist in the graph, print the following error message to
 ```
 
 ## 5. Delete an edge from the graph.
-The user provides TWO NODE NAMEs as the end points of an edge to be deleted. If the NAMEs exist in the graph with an edge between them, the edge IN THE DIRECTION GIVEN is deleted and acknowledged. If the requested edge does NOT exist in the graph, an error message is issued. The global flag UNDIRECTED must be set to FALSE to inhibit future execution of the Krushkal’s function.
+The user provides TWO NODE NAMEs as the end points of an edge to be deleted. If the NAMEs exist in the graph with an edge between them, the edge IN THE DIRECTION GIVEN is deleted and acknowledged. If the requested edge does NOT exist in the graph, an error message is issued. The global flag UNDIRECTED must be set to FALSE to inhibit future execution of the Kruskal’s function.
 
 ##### Format:
 
@@ -194,19 +194,19 @@ the screen:
 ```
 
 ## 6. Find the Minimal Spanning Tree for the graph.
-Execute KRUSHKAL’s Algorithm to create a Minimal Spanning Tree for the current graph IF and ONLY IF the global variable UNDIRECTED is set to TRUE. 
+Execute Kruskal’s Algorithm to create a Minimal Spanning Tree for the current graph IF and ONLY IF the global variable UNDIRECTED is set to TRUE. 
 
 The output format will be discussed in class and provided as an addendum after the class.
 
 ##### Format:
 
 ```
-krushkal
+Kruskal
 ```
 ##### Example:
 
 ```
-krushkal
+Kruskal
 ```
 ##### Return: 
 
@@ -214,10 +214,10 @@ Min Spanning Tree as an ADJACENCY LIST (just call your print function)
 
 ##### Error:  
 Edges are deleted directionally, so if even ONE edge was deleted
-(UNDIRECTED = FALSE), you should assume that Krushkal’s algorithm can no longer be executed on the graph. Print the following:
+(UNDIRECTED = FALSE), you should assume that Kruskal’s algorithm can no longer be executed on the graph. Print the following:
 
 ```
-ERROR: Krushkal’s Algorithm available only for UNDIRECTED graphs
+ERROR: Kruskal’s Algorithm available only for UNDIRECTED graphs
 ```
     
 ## 7. Print the Graph in Adjacency Matrix Format.
