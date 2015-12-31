@@ -9,8 +9,7 @@ set(SOURCE_FILES
         src/SanE_10_P3_AdjacencyMatrix.cpp
         src/SanE_10_P3_helpers.cpp
         src/SanE_10_P3_Main.cpp
-        test/prog2test.csv
-        test/prog3test.csv
+        test/input.csv
         Makefile
         README.md)
 

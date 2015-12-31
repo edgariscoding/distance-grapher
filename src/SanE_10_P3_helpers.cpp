@@ -34,6 +34,7 @@ bool isFile() {
 	return file;
 }
 
+// Prints error message with available commands
 void userError() {
 	std::cout << "\n**ERROR** UNKNOWN COMMAND\n";
 	std::cout << "Available commands: \n";
@@ -46,4 +47,9 @@ void userError() {
 	std::cout << "\tprint matrix\n";
 	std::cout << "\tprint list\n";
 	std::cout << "\tfile \\home\\dir\\file.csv\n\n";
+}
+
+// Compare function used for sorting using qsort()
+int compare (const void * a, const void * b){
+	return ( *(int*)a - *(int*)b );
 }

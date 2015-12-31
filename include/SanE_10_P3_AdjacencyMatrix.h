@@ -8,6 +8,11 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <set>
+#include <map>
+#include <utility>
+#include <string>
 #include "SanE_10_P3_helpers.h"
 
 #define MAXNODES 26
@@ -17,12 +22,12 @@ class AdjacencyMatrix
 	private:
 		bool UNDIRECTED;
 		static const int empty = -1;
-		int totalEdges;
+		unsigned int totalEdges;
 		struct {
 			bool exists = false;
 			std::string name = "";
 			int distance = empty;
-		} node[MAXNODES][MAXNODES];
+		} edge[MAXNODES][MAXNODES];
 	
 	public:
 		AdjacencyMatrix();
@@ -34,6 +39,6 @@ class AdjacencyMatrix
 		void DeleteEdge(int, int);
 		void PrintMatrix();
 		void PrintList();
-		void Kruskal();
+		//std::vector<std::pair<int, int>> Kruskal();
 };
 #endif

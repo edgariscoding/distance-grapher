@@ -37,20 +37,20 @@ make run
 file test/prog3test.csv
 ```
 
-## 1. Add a node to the graph.
-The user provides a NAME for a node. 
+## 1. Add a edge to the graph.
+The user provides a NAME for a edge.
 
-If the NAME does not exist in the graph, the node is added and acknowledged. If the NAME already exists in the graph, an error message is issued.
+If the NAME does not exist in the graph, the edge is added and acknowledged. If the NAME already exists in the graph, an error message is issued.
 
 ##### Format:
 
 ```
-node add <name>
+edge add <name>
 ```
 ##### Example:
 
 ```
-node add NB
+edge add NB
 ```
 
 ##### Return:
@@ -68,19 +68,19 @@ error message to the screen:
 *** ERROR *** DUPLICATE NODE: NB
 ```
 
-## 2. Delete a node from the graph.
-The user provides a NAME for a node that should be deleted.
+## 2. Delete a edge from the graph.
+The user provides a NAME for a edge that should be deleted.
 
 ##### Format:
 
 ```
-node delete <name>
+edge delete <name>
 ```
 
 ##### Example:
 
 ```
-node delete NB
+edge delete NB
 ```
 
 ##### Return:
@@ -97,28 +97,28 @@ screen:
 ```
 *** ERROR *** NODE NOT FOUND FOR DELETION: NB
 ```
-The deletion of a node may cause the deletion of 1 or more edges. 
+The deletion of a edge may cause the deletion of 1 or more edges.
 
-Report EACH EDGE that is automatically deleted as a result of a node deletion.
+Report EACH EDGE that is automatically deleted as a result of a edge deletion.
 
 ```
 EDGE AUTO REMOVED BY NODE DELETION: NB-NA
 EDGE AUTO-REMOVED BY NODE DELETION: NB-NB
 ```
 
-## 3. Search for a node in the graph. 
-The user provides a NAME of a node for which to search.
+## 3. Search for a edge in the graph.
+The user provides a NAME of a edge for which to search.
 
 ##### Format:
 
 ```
-node search <name>
+edge search <name>
 ```
 
 ##### Example:
 
 ```
-node search NB
+edge search NB
 ```
 ##### Return: 
 
@@ -154,7 +154,7 @@ If the EDGE is a duplicate of one already in the graph, print the following:
 EDGE NA-NB and NB-NA UPDATE: NAME: S99 DIST: 100
 ```
 
-If EITHER node does not exist in the graph, print the following error message to the screen:
+If EITHER edge does not exist in the graph, print the following error message to the screen:
 
 ```
 *** ERROR *** NODE NA: NOT FOUND
